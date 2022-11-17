@@ -64,7 +64,7 @@ class _SignInFormState extends State<SignInForm> {
           ),
           buildPasswordFormField(context),
           SizedBox(
-            height: getPropotionateScreenHeight(180),
+            height: getPropotionateScreenHeight(160),
           ),
           SizedBox(
             width: double.infinity,
@@ -87,7 +87,7 @@ class _SignInFormState extends State<SignInForm> {
 
                   addPrefs();
 
-                  Navigator.of(context).push(
+                  Navigator.pushReplacement(context,
                     MaterialPageRoute(
                       builder: (context) => const HomeScreen(),
                     ),
@@ -106,6 +106,9 @@ class _SignInFormState extends State<SignInForm> {
                       ),
                     ),
             ),
+          ),
+          SizedBox(
+            height: getPropotionateScreenHeight(20),
           ),
         ],
       ),

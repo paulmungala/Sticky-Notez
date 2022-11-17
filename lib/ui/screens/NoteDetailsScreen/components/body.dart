@@ -90,23 +90,24 @@ class _BodyState extends State<Body> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
-                        onPressed: ()async {
-   
+                        onPressed: () async {
                           if (isLoading) return;
 
-        await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => AddEditScreen(note: note),
-        ));
-
+                          await Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AddEditScreen(note: note),
+                          ));
                         },
-                        child:Text(
-                                "Edit Note",
-                                style: TextStyle(
-                                  fontSize: getPropotionateScreenWidth(18),
-                                  color: Colors.white,
-                                ),
-                              ),
+                        child: Text(
+                          "Edit Note",
+                          style: TextStyle(
+                            fontSize: getPropotionateScreenWidth(18),
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
+                    ),
+                     SizedBox(
+                      height: getPropotionateScreenHeight(20),
                     ),
                   ],
                 ),

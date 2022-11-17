@@ -3,7 +3,7 @@
    <application
         android:label="MyQuiz"
         android:name="${applicationName}"
-        android:icon="@drawable/splash">
+        android:icon="@drawable/background">
         <activity
             android:name=".MainActivity"
             android:exported="true"

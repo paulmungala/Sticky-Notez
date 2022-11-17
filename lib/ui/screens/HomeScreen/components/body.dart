@@ -28,13 +28,6 @@ class _BodyState extends State<Body> {
     refreshNotes();
   }
 
-  @override
-  void dispose() {
-    NotesDatabase.instance.close();
-
-    super.dispose();
-  }
-
   // getting all notes
   Future refreshNotes() async {
     setState(() => loading = true);
@@ -88,7 +81,6 @@ class _BodyState extends State<Body> {
               builder: (context) => NoteDetailsScreen(noteId: note.id!),
             ));
 
-            // refreshNotes();
           },
           child: NoteCard(note: note, index: index),
         );
