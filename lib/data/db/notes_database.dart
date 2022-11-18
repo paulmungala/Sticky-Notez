@@ -141,10 +141,4 @@ CREATE TABLE $tableNotes (
     );
   }
 
-  // closing the database
-  Future close() async {
-    final db = await instance.database;
-
-    db!.close();
-  }
 }

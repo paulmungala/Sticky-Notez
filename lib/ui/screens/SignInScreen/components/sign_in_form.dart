@@ -153,7 +153,7 @@ class _SignInFormState extends State<SignInForm> {
       validator: FormBuilderValidators.compose([
         FormBuilderValidators.match(
           passr,
-          errorText: "use capital & small leters, a number,dd @ or #",
+          errorText: "use capital & small leters, a number & @ or #",
         ),
         FormBuilderValidators.required(
           errorText: "Please enter your password",

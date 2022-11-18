@@ -11,8 +11,9 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+bool isGrid = false;
+
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +27,32 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isGrid = false;
+              });
+            },
+            icon: Icon(
+              Icons.list_rounded,
+              color: kPrimaryColor,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isGrid = true;
+              });
+            },
+            icon: Icon(
+              Icons.grid_view_rounded,
+              color: kPrimaryColor,
+            ),
+          ),
+        ],
       ),
-      body: const Body(),
+      body: Body(isGrid : isGrid),
       floatingActionButton: FloatingActionButton(
           backgroundColor: kPrimaryColor,
           child: const Icon(Icons.add),
