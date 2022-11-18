@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   // for navigating
   Future navigate() async {
-    await Future.delayed(const Duration(milliseconds: 2000), () {});
+    await Future.delayed(const Duration(milliseconds: 1000), () {});
 
     //navigation
     if (isLoggedIn == true) {
