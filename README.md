@@ -13,7 +13,9 @@ An app where you can write all your sticky notes.(digital tricky notes)
 
 ## Inspiration
 I borrowed a few UI principles from here and did a simple mockup in figma.
+
 Dribble:- https://dribbble.com/shots/18594821-Daily-Diary-App.
+
 Figma UI:- https://www.figma.com/file/ppViAbJmpFl3ziAtYMPcBM/MyQuiz?node-id=0%3A1&t=dBJSO7ZRtaOCWx2N-1
 
 ## Packages Used
