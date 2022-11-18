@@ -40,9 +40,11 @@ class NoteCard extends StatelessWidget {
         padding: EdgeInsets.all(
           getPropotionateScreenWidth(8),
         ),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(
+              getPropotionateScreenWidth(15),
+            ),
           ),
         ),
         child: Column(

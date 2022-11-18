@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         actions: [
+          isGrid ==  true ?
           IconButton(
             onPressed: () {
               setState(() {
@@ -38,8 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.list_rounded,
               color: kPrimaryColor,
             ),
-          ),
-          IconButton(
+          )
+         : IconButton(
             onPressed: () {
               setState(() {
                 isGrid = true;

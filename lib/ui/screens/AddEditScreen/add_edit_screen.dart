@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_quiz/domain/model/notes_model.dart';
 import 'package:my_quiz/ui/screens/AddEditScreen/components/body.dart';
 import 'package:my_quiz/ui/screens/HomeScreen/home_screen.dart';
-import 'package:my_quiz/utils/constants.dart';
 
 class AddEditScreen extends StatelessWidget {
   //note details
@@ -24,11 +23,8 @@ class AddEditScreen extends StatelessWidget {
               );
             }),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Edit Or Add',
-          style: TextStyle(
-            color: kPrimaryColor,
-          ),
         ),
       ),
       body: Body(note: note),

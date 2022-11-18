@@ -30,17 +30,13 @@ class _BodyState extends State<Body> {
     refreshNotes();
   }
 
-  // getting all notes
-  Future refreshNotes() async {
-    setState(() => loading = true);
-
-    notes = await NotesDatabase.instance.readAllNotes();
-
-    setState(() => loading = false);
-  }
-
   @override
   Widget build(BuildContext context) {
+    OutlineInputBorder outlineInputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(color: kPrimaryColor),
+      gapPadding: 10,
+    );
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -48,29 +44,63 @@ class _BodyState extends State<Body> {
           padding: EdgeInsets.symmetric(
             horizontal: getPropotionateScreenWidth(10),
           ),
-          child: Center(
-            child: loading
-                ? CircularProgressIndicator(
-                    color: kPrimaryColor,
-                  )
-                : notes.isEmpty
-                    ? Text(
-                        "No Notes yet",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: getPropotionateScreenWidth(24),
-                        ),
-                      )
-                    : Column(
-                        children: [
-                          SizedBox(
-                            height: getPropotionateScreenHeight(10),
-                          ),
-                          Expanded(
-                            child: buildNotes(),
-                          ),
-                        ],
+          child: Column(
+            children: [
+              SizedBox(
+                height: getPropotionateScreenHeight(10),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: getPropotionateScreenWidth(5),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    // floatingLabelBehavior: FloatingLabelBehavior.always,
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: getPropotionateScreenHeight(10),
+                      vertical: getPropotionateScreenHeight(10),
+                    ),
+                    hintText: "Search for Notes",
+                    enabledBorder: outlineInputBorder,
+                    focusedBorder: outlineInputBorder,
+                    prefixIcon: Icon(
+                      Icons.search_outlined,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                  onChanged: searchNote,
+                ),
+              ),
+              SizedBox(
+                height: getPropotionateScreenHeight(10),
+              ),
+              loading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: kPrimaryColor,
                       ),
+                    )
+                  : notes.isEmpty
+                      ? Text(
+                          "None so far",
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: getPropotionateScreenWidth(18),
+                          ),
+                        )
+                      : Expanded(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  child: RefreshIndicator(
+                                onRefresh: refreshNotes,
+                                color: kPrimaryColor,
+                                child: buildNotes(),
+                              )),
+                            ],
+                          ),
+                        ),
+            ],
           ),
         ),
       ),
@@ -96,4 +126,31 @@ class _BodyState extends State<Body> {
           );
         },
       );
+
+  // getting all notes
+  Future refreshNotes() async {
+    setState(() => loading = true);
+
+    notes = await NotesDatabase.instance.readAllNotes();
+
+    setState(() => loading = false);
+  }
+
+  // search for notes
+  void searchNote(String query) {
+    final suggestions = notes.where((note) {
+      final noteTitle = note.title.toLowerCase();
+      final input = query.toLowerCase();
+
+      return noteTitle.contains(input);
+    }).toList();
+
+    setState(() {
+      notes = suggestions;
+    });
+
+    if (query.isEmpty) {
+      refreshNotes();
+    }
+  }
 }
